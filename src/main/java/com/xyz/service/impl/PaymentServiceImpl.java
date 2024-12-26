@@ -41,7 +41,7 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	private String stripeApiSecret ="sk_test_51QK1tNBdQIRG6wxLfGSTJliNRklTx0zrac07oRi4X8SHslE4wn85ylTicX4XM1OHwSQtiTMk9amPXgNNctd1Vf5600k5koHu6e" ;
 	
-	
+	private String frontend_BASE_URL = "https://ecommerce-multi-vendor-frontend.vercel.app";
 	
 
 	@Override
@@ -126,7 +126,7 @@ public class PaymentServiceImpl implements PaymentService {
 			notify.put("email", true);
 			paymentLinkRequest.put("notify", notify);
 			
-			paymentLinkRequest.put("callback_url", "http://localhost:3000/payment-success/"+paymentOrder.getId());
+			paymentLinkRequest.put("callback_url", frontend_BASE_URL+"/payment-success/"+paymentOrder.getId());
 			paymentLinkRequest.put("callback_method", "get");
 			
 			PaymentLink paymentLink =  razorpayClient.paymentLink.create(paymentLinkRequest);
@@ -159,7 +159,7 @@ public class PaymentServiceImpl implements PaymentService {
 	    SessionCreateParams params = SessionCreateParams.builder()
 	            .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
 	            .setMode(SessionCreateParams.Mode.PAYMENT)
-	            .setSuccessUrl("http://localhost:3000/payment-success/" + paymentOrder.getId())
+	            .setSuccessUrl(frontend_BASE_URL+"/payment-success/" + paymentOrder.getId())
 	            .setCancelUrl("http://localhost:3000/payment-cancel")
 	            .addLineItem(SessionCreateParams.LineItem.builder()
 	                    .setQuantity(1L)
