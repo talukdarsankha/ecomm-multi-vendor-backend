@@ -43,7 +43,7 @@ public class AppConfig {
 				// TODO Auto-generated method stub
 				CorsConfiguration cfg = new CorsConfiguration();
 				
-				cfg.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+				cfg.setAllowedOrigins(Arrays.asList("http://localhost:3000","https://ecommerce-multi-vendor-frontend.vercel.app/"));
 				cfg.setAllowedMethods(Collections.singletonList("*"));
 				cfg.setAllowedHeaders(Collections.singletonList("*"));
 				cfg.setAllowCredentials(true);
